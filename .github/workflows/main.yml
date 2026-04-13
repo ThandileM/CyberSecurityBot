@@ -27,7 +27,7 @@ jobs:
 
       # Build project
       - name: Build project
-        run: dotnet build --no-restore --configuration Release
+        run: dotnet build ./path/to/CyberSecurityBot.csproj --no-restore --configuration Release
 
       # Run app (optional)
       - name: Run application
