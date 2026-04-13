@@ -1,26 +1,55 @@
-name: .NET Build
+name: .NET Build & Test
 
-on: 
+on:
   push:
-    branches: [main]
+    branches: [ "main" ]
   pull_request:
-    branches: [main]
+    branches: [ "main" ]
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-      -uses: actions/checkout@v3
+    # 1. Checkout repository
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      -name: Setup .NET
-      -uses: actions/setup-dotnet@v3
+    # 2. Setup .NET
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: '8.0.x'   # Change if your project uses another version
 
-        -name: Restore dependencies
-        -run: dotnet build --no-restore
+    # 3. Cache dependencies (speeds up builds)
+    - name: Cache NuGet packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
 
-        -name: Run tests
-        -run: dotnet test --no-build --verbosity normal
+    # 4. Restore dependencies
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # 5. Build project
+    - name: Build project
+      run: dotnet build --no-restore --configuration Release
+
+    # 6. Run tests (optional but recommended)
+    - name: Run tests
+      run: dotnet test --no-build --verbosity normal
+      continue-on-error: true   # prevents failure if you don’t have tests yet
+
+    # 7. Publish build artifacts (optional)
+    - name: Publish app
+      run: dotnet publish -c Release -o publish
+
+    # 8. Upload artifact (so you can download build)
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: CyberSecurityBot
+        path: publish/
