@@ -2,33 +2,25 @@ name: .NET Build
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-      # Checkout repo
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout Repository
+      uses: actions/checkout@v3
 
-      # Setup .NET
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 6.0.x
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
 
-      # Restore dependencies
-      - name: Restore dependencies
-        run: dotnet restore ./path/to/CyberSecurityBot.csproj --no-restor --configuration Release
+    - name: Restore Dependencies
+      run: dotnet restore CyberSecurity/CyberSecurity/CyberSecurity.csproj
 
-      # Build project
-      - name: Build project
-        run: dotnet build ./path/to/CyberSecurityBot.csproj --no-restore --configuration Release
-
-      # Run app (optional)
-      - name: Run application
-        run: dotnet run --project CyberSecurityBot.csproj
+    - name: Build Project
+      run: dotnet build CyberSecurity/CyberSecurity/CyberSecurity.csproj --no-restore
