@@ -21,14 +21,14 @@ jobs:
         with:
           dotnet-version: 6.0.x
 
-# Restore dependencies
-- name: Restore dependencies
-  run: dotnet restore ./CyberSecurityBot.csproj
+      # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore
 
-# Build project
-- name: Build project
-  run: dotnet build ./CyberSecurityBot.csproj --no-restore --configuration Release
+      # Build project
+      - name: Build project
+        run: dotnet build --no-restore --configuration Release
 
-# Run app (optional)
-- name: Run application
-  run: dotnet run --project ./CyberSecurityBot.csproj
+      # Run app (optional)
+      - name: Run application
+        run: dotnet run --project CyberSecurityBot.csproj
