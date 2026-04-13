@@ -23,7 +23,7 @@ jobs:
 
       # Restore dependencies
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ./path/to/CyberSecurityBot.csproj --no-restor --configuration Release
 
       # Build project
       - name: Build project
