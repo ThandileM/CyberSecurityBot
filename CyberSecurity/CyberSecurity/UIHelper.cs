@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Threading;
+
 
 namespace CyberSecurityChatbot
 {
@@ -7,7 +7,7 @@ namespace CyberSecurityChatbot
     {
         public static void DisplayLogo()
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("========================================");
             Console.WriteLine("  CYBERSECURITY CHATBOT ");
             Console.WriteLine("========================================");
@@ -24,14 +24,16 @@ _________ .__            __ __________        __
             Console.ResetColor();
         }
 
-        public static void TypeEffext(string message)
+        public static void TypeEffect(string message)
         {
             foreach (char c in message)
             {
-                Console.WriteLine(c);
-                System.Threading.Thread.Sleep(20);
+                Console.Write(c);
+                Thread.Sleep(20);
             }
             Console.WriteLine();
         }
+
+        
     }
 }

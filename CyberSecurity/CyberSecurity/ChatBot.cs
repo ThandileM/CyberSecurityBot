@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace CyberSecurityChatbot
 {
     public class ChatBot
@@ -8,7 +9,7 @@ namespace CyberSecurityChatbot
 
         public void StartChat()
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.Write("Enter your name: ");
             userName = Console.ReadLine();
 
@@ -18,7 +19,7 @@ namespace CyberSecurityChatbot
             while (true)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("\nYou: ");
+                Console.Write("\nUser: ");
                 Console.ResetColor();
 
                 string input = Console.ReadLine().ToLower();
@@ -33,39 +34,30 @@ namespace CyberSecurityChatbot
                     Console.WriteLine("Goodbye! Stay safe online.");
                     break;
                 }
-                Respond(input);
+                SaveMemory(input);
+                string response = ResponseManager.GetResponse(input);
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                UIHelper.TypeEffect("Bot: " + response);
+             
             }
         }
-        private void Respond(string input)
-        {
-            Console.ForegroundColor = ConsoleColor.Cyan;
 
-            if (input.Contains("how are you"))
+        private void SaveMemory(string input)
+        {
+            if (input.Contains("password"))
             {
-                Console.WriteLine("I'm doing great! I'm here to help you stay safe online.");
-            }
-            else if (input.Contains("purpose"))
-            {
-                Console.WriteLine("My purpose is to educate you about cybersecurity.");
-            }
-            else if (input.Contains("password"))
-            {
-                Console.WriteLine("Use strong passwords with numbers, symbols, anduppercase letterss.");
+                MemoryManager.favoriteTopic = "Password Safety";
             }
             else if (input.Contains("phishing"))
             {
-                Console.WriteLine("Avoid clicking suspicious email links.");
+                MemoryManager.favoriteTopic = "phishing";
             }
-            else if (input.Contains("safe browsing"))
+            else if (input.Contains("privacy"))
             {
-                Console.WriteLine("Always check website URLs before entering personal information.");
+                MemoryManager.favoriteTopic = "Online Privacy";
             }
-            else
-            {
-                Console.WriteLine("I didn't quite understand that. Could you rephrase?");
-            }
-            Console.ResetColor();
         }
-
     }
 }
+      

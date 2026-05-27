@@ -28,3 +28,4 @@ C:\Users\anita\source\repos\CyberSecurity\CyberSecurity\obj\Debug\net10.0\refint
 C:\Users\anita\source\repos\CyberSecurity\CyberSecurity\obj\Debug\net10.0\CyberSecurity.pdb
 C:\Users\anita\source\repos\CyberSecurity\CyberSecurity\obj\Debug\net10.0\CyberSecurity.genruntimeconfig.cache
 C:\Users\anita\source\repos\CyberSecurity\CyberSecurity\obj\Debug\net10.0\ref\CyberSecurity.dll
+C:\Users\anita\source\repos\CyberSecurity\CyberSecurity\bin\Debug\net10.0\greeting (1).wav

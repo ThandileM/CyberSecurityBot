@@ -7,6 +7,7 @@ namespace CyberSecurityChatbot
         static void Main(string[] args)
         {
             VoicePlayer.PlayGreeting();
+
             UIHelper.DisplayLogo();
 
             ChatBot bot = new ChatBot();
